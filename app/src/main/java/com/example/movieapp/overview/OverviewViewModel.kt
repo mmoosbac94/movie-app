@@ -2,6 +2,7 @@ package com.example.movieapp.overview
 
 import android.util.Log
 import androidx.lifecycle.*
+import com.example.movieapp.R
 import com.example.movieapp.database.MovieProperty
 import com.example.movieapp.repositories.MoviesRepository
 import kotlinx.coroutines.launch
@@ -16,14 +17,21 @@ class OverviewViewModel(private val moviesRepository: MoviesRepository) : ViewMo
 
     init {
         refreshDataFromRepository()
-        getMoviesFromLocalDatabase()
     }
 
-    private fun refreshDataFromRepository() {
+    fun refreshDataFromRepository(itemId: Int = 0) {
+        var url = ""
+        when (itemId) {
+            0 -> url =
+                "3/movie/popular?api_key=0c97571ddf07813f8e4e1712ab264a77&language=en-US&page=1"
+            R.id.otherMovies -> url =
+                "3/movie/top_rated?api_key=0c97571ddf07813f8e4e1712ab264a77&language=en-US&page=1"
+        }
         try {
             viewModelScope.launch {
-                moviesRepository.refreshMovies()
+                moviesRepository.refreshMovies(url)
             }
+            getMoviesFromLocalDatabase()
         } catch (e: Exception) {
             Log.i("EXCEPTION", e.toString())
         }
@@ -33,6 +41,7 @@ class OverviewViewModel(private val moviesRepository: MoviesRepository) : ViewMo
         try {
             viewModelScope.launch {
                 val movieList = moviesRepository.getMovies()
+                Log.i("BUTT", "BUTT")
                 _movieList.value = movieList
             }
         } catch (e: Exception) {

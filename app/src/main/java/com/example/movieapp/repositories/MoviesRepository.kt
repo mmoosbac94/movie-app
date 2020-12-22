@@ -9,10 +9,10 @@ import kotlinx.coroutines.withContext
 
 class MoviesRepository(private val database: MoviesDatabase) {
 
-    suspend fun refreshMovies() {
+    suspend fun refreshMovies(url: String) {
         try {
             withContext(Dispatchers.IO) {
-                val movieResult = MovieApi.retrofitService.getProperties()
+                val movieResult = MovieApi.retrofitService.getProperties(url)
                 database.movieDao.insertAll(movieResult.results)
             }
         } catch (e: Exception) {

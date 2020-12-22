@@ -1,10 +1,9 @@
 package com.example.movieapp.overview
 
 import android.os.Bundle
+import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.movieapp.R
@@ -22,9 +21,22 @@ class OverviewFragment : Fragment(R.layout.fragment_overview) {
 
         binding = FragmentOverviewBinding.inflate(inflater)
 
+        setHasOptionsMenu(true)
+
         init()
 
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.options_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+            getViewModel<OverviewViewModel>().refreshDataFromRepository(item.itemId)
+        return super.onOptionsItemSelected(item)
+
     }
 
     private fun init() {
@@ -35,7 +47,7 @@ class OverviewFragment : Fragment(R.layout.fragment_overview) {
 
         // Access viewModel via Koin
         getViewModel<OverviewViewModel>().movieList.observe(viewLifecycleOwner, Observer {
-
+            Log.i("BUTTO", "BUTTO")
             adapter.movieList = it
             adapter.notifyDataSetChanged()
         })
