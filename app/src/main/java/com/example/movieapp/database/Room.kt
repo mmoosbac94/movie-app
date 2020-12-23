@@ -6,8 +6,11 @@ import androidx.room.*
 @Dao
 interface MovieDao {
 
-    @Query("select * from movie_property_table ORDER BY voteAverage DESC")
-    fun getMovies(): List<MovieProperty>
+    @Query("select * from movie_property_table WHERE type LIKE :type Order by voteAverage DESC")
+    fun getPopularMovies(type: String): List<MovieProperty>
+
+    @Query("select * from movie_property_table WHERE type LIKE :type Order by voteAverage DESC")
+    fun getTopRatedMovies(type: String): List<MovieProperty>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(movieProperties: List<MovieProperty>)

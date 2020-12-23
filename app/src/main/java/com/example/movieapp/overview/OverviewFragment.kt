@@ -1,7 +1,6 @@
 package com.example.movieapp.overview
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -34,7 +33,7 @@ class OverviewFragment : Fragment(R.layout.fragment_overview) {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-            getViewModel<OverviewViewModel>().refreshDataFromRepository(item.itemId)
+        getViewModel<OverviewViewModel>().refreshDataFromRepository(item.itemId)
         return super.onOptionsItemSelected(item)
 
     }
@@ -47,7 +46,6 @@ class OverviewFragment : Fragment(R.layout.fragment_overview) {
 
         // Access viewModel via Koin
         getViewModel<OverviewViewModel>().movieList.observe(viewLifecycleOwner, Observer {
-            Log.i("BUTTO", "BUTTO")
             adapter.movieList = it
             adapter.notifyDataSetChanged()
         })

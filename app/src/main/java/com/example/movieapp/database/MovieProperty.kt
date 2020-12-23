@@ -11,10 +11,10 @@ data class MovieResult(
 @Entity(tableName = "movie_property_table")
 data class MovieProperty(
     @PrimaryKey
-    val id: String,
+    var id: String,
     val title: String,
     @Json(name = "release_date") val releaseDate: String,
     @Json(name = "vote_average") val voteAverage: Double,
-    @Json(name = "poster_path") val movieImg: String
-
+    @Json(name = "poster_path") val movieImg: String,
+    val type: String
 )

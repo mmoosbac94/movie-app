@@ -16,32 +16,28 @@ class OverviewViewModel(private val moviesRepository: MoviesRepository) : ViewMo
         get() = _movieList
 
     init {
-        refreshDataFromRepository()
+        refreshDataFromRepository(R.id.popularMovies)
     }
 
-    fun refreshDataFromRepository(itemId: Int = 0) {
-        var url = ""
-        when (itemId) {
-            0 -> url =
-                "3/movie/popular?api_key=0c97571ddf07813f8e4e1712ab264a77&language=en-US&page=1"
-            R.id.otherMovies -> url =
-                "3/movie/top_rated?api_key=0c97571ddf07813f8e4e1712ab264a77&language=en-US&page=1"
-        }
+    fun refreshDataFromRepository(itemId: Int) {
         try {
             viewModelScope.launch {
-                moviesRepository.refreshMovies(url)
+                moviesRepository.refreshMovies(itemId)
+                getMoviesFromLocalDatabase(itemId)
             }
-            getMoviesFromLocalDatabase()
         } catch (e: Exception) {
             Log.i("EXCEPTION", e.toString())
         }
     }
 
-    private fun getMoviesFromLocalDatabase() {
+    private fun getMoviesFromLocalDatabase(itemId: Int) {
         try {
             viewModelScope.launch {
-                val movieList = moviesRepository.getMovies()
-                Log.i("BUTT", "BUTT")
+                when(itemId) {
+                    R.id.popularMovies -> moviesRepository.getPopularMovies()
+                    R.id.topRatedMovies -> moviesRepository.getTopRatedMovies()
+                }
+                val movieList = moviesRepository.getPopularMovies()
                 _movieList.value = movieList
             }
         } catch (e: Exception) {
