@@ -31,13 +31,14 @@ class OverviewViewModel(private val moviesRepository: MoviesRepository) : ViewMo
     }
 
     private fun getMoviesFromLocalDatabase(itemId: Int) {
+        var movieList: List<MovieProperty> = mutableListOf()
         try {
             viewModelScope.launch {
                 when(itemId) {
-                    R.id.popularMovies -> moviesRepository.getPopularMovies()
-                    R.id.topRatedMovies -> moviesRepository.getTopRatedMovies()
+                    R.id.popularMovies -> movieList = moviesRepository.getPopularMovies()
+                    R.id.topRatedMovies -> movieList = moviesRepository.getTopRatedMovies()
                 }
-                val movieList = moviesRepository.getPopularMovies()
+                Log.i("FINALE", movieList[0].title)
                 _movieList.value = movieList
             }
         } catch (e: Exception) {
