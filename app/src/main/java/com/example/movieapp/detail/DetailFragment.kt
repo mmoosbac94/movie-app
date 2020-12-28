@@ -35,6 +35,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         binding.detailVoteAverage.text =
             context?.getString(R.string.voteAverage, args.movie.voteAverage.toString())
         binding.detailReleaseDate.text = args.movie.releaseDate
+        binding.overview.text = args.movie.overview
 
     }
 }

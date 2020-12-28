@@ -38,11 +38,15 @@ class OverviewViewModel(private val moviesRepository: MoviesRepository) : ViewMo
                     R.id.popularMovies -> movieList = moviesRepository.getPopularMovies()
                     R.id.topRatedMovies -> movieList = moviesRepository.getTopRatedMovies()
                 }
-                Log.i("FINALE", movieList[0].title)
                 _movieList.value = movieList
             }
         } catch (e: Exception) {
             Log.i("EXCEPTION", e.toString())
         }
+    }
+
+
+    fun checkTitle(itemId: Int) {
+
     }
 }

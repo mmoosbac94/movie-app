@@ -7,22 +7,26 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="30dp">
+    android:layout_marginTop="30dp"
+    android:theme="@style/MyTextViewTheme">
 
     <ImageView
         android:id="@+id/movieImage"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
         android:layout_gravity="center"
         android:contentDescription="@string/movie_image" />
 
     <TextView
         android:id="@+id/movieTitle"
+        android:textSize="15sp"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        tools:text="Placeholder1"/>
+        tools:text="Placeholder1"
+        android:layout_marginTop="10dp"/>
 
     <TextView
         android:id="@+id/voteAverage"
@@ -30,6 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
+        android:layout_marginTop="3dp"
         tools:text="Placeholder2"/>
 
 </LinearLayout>

@@ -2,8 +2,9 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="@string/top_rated_movies"
-        android:id="@+id/topRatedMovies"/>
     <item android:title="@string/popular_movies"
         android:id="@+id/popularMovies"/>
+    <item
+        android:id="@+id/topRatedMovies"
+        android:title="@string/top_rated_movies" />
 </menu>

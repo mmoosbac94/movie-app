@@ -3,44 +3,64 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".detail.DetailFragment" >
+        <ScrollView
+            android:layout_width="match_parent"
+            android:background="@color/black"
+            android:layout_height="match_parent">
 
-        <ImageView
-            android:layout_marginTop="50dp"
-            android:id="@+id/movieImageView"
-            android:layout_gravity="center"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            tools:src="@tools:sample/backgrounds/scenic"
-            android:contentDescription="@string/movie_image" />
+            <LinearLayout
+                android:theme="@style/MyTextViewTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/black"
+                android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/detailTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            tools:text="Placeholder"
-            android:layout_margin="5dp"/>
+                <ImageView
+                    android:id="@+id/movieImageView"
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="30dp"
+                    android:contentDescription="@string/movie_image"
+                    tools:src="@tools:sample/backgrounds/scenic" />
 
-        <TextView
-            android:id="@+id/detailVoteAverage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            tools:text="Placeholder"
-            android:layout_margin="5dp"/>
+                <TextView
+                    android:id="@+id/detailTitle"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="30dp"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    tools:text="Placeholder" />
 
-        <TextView
-            android:id="@+id/detailReleaseDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            tools:text="Placeholder"
-            android:layout_margin="5dp"/>
+                <TextView
+                    android:id="@+id/detailVoteAverage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    tools:text="Placeholder" />
 
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/detailReleaseDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    tools:text="Placeholder" />
+
+                <TextView
+                    android:id="@+id/overview"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="20dp"
+                    tools:text="PlaceHolderOverview" />
+
+            </LinearLayout>
+        </ScrollView>
+
 </layout>

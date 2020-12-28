@@ -34,13 +34,13 @@ object MovieApi {
     }
 
     fun convertToDdModelWithType(movieApiResult: MovieApiResult, type: String): MovieResult {
-        Log.i("TESTo", "TEST")
         val list: MutableList<MovieProperty> = mutableListOf()
 
         movieApiResult.results.map {
             val movieProperty: MovieProperty = MovieProperty(
                 id = it.id,
                 title = it.title,
+                overview = it.overview,
                 voteAverage = it.voteAverage,
                 releaseDate = it.releaseDate,
                 movieImg = it.movieImg,
@@ -48,7 +48,6 @@ object MovieApi {
             )
             list.add(movieProperty)
         }
-        Log.i("MovieResult", list[0].toString())
         return MovieResult(list)
     }
 }
@@ -60,6 +59,7 @@ data class MovieApiResult(
 data class MovieApiProperty(
     val id: String,
     val title: String,
+    val overview: String,
     @Json(name = "release_date") val releaseDate: String,
     @Json(name = "vote_average") val voteAverage: Double,
     @Json(name = "poster_path") val movieImg: String
