@@ -5,10 +5,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.movieapp.R
+import com.example.movieapp.Utils
 import com.example.movieapp.database.MovieProperty
 import com.example.movieapp.databinding.RecyclerviewItemBinding
 
@@ -28,7 +30,7 @@ class MovieRecyclerViewAdapter(var movieList: List<MovieProperty>) :
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val movie: MovieProperty = movieList[position]
-        holder.bind(movie)
+        holder.bind(holder, movie)
     }
 
 
@@ -39,19 +41,24 @@ class MovieRecyclerViewAdapter(var movieList: List<MovieProperty>) :
         private var movieVoteAverageView: TextView = itemBinding.voteAverage
         private var movieImageView: ImageView = itemBinding.movieImage
 
-        fun bind(movieProperty: MovieProperty) {
+        fun bind(viewHolder: MovieViewHolder, movieProperty: MovieProperty) {
+
+            initClickListener(viewHolder, movieProperty)
+
             movieTitleView.text = movieProperty.title
-            movieVoteAverageView.text = movieProperty.voteAverage.toString()
-            bindMovieImage(movieProperty.movieImg)
+            movieVoteAverageView.text = itemView.context.getString(
+                R.string.voteAverage,
+                movieProperty.voteAverage.toString()
+            )
+            Utils.bindMovieImage(movieProperty.movieImg, movieImageView)
         }
 
-        private fun bindMovieImage(movieImage: String) {
-            val movieImageUrl = "https://image.tmdb.org/t/p/w500$movieImage"
-            Glide.with(movieImageView.context).load(movieImageUrl).apply(
-                RequestOptions().placeholder(
-                    R.drawable.loading_animation
+        private fun initClickListener(viewHolder: MovieViewHolder, movie: MovieProperty) {
+            viewHolder.itemView.setOnClickListener {
+                it.findNavController().navigate(
+                    OverviewFragmentDirections.actionOverviewFragmentToDetailFragment(movie)
                 )
-            ).into(movieImageView)
+            }
         }
     }
 
