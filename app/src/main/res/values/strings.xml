@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">MovieApp</string>
     <string name="movie_image">ImageOfMovie</string>
+    <string name="voteAverage">%1$s/10</string>
 </resources>

@@ -1,13 +1,16 @@
 package com.example.movieapp.database
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
+import kotlinx.android.parcel.Parcelize
 
 data class MovieResult(
     val results: List<MovieProperty>
 )
 
+@Parcelize
 @Entity(tableName = "movie_property_table")
 data class MovieProperty(
     @PrimaryKey
@@ -17,4 +20,4 @@ data class MovieProperty(
     @Json(name = "vote_average") val voteAverage: Double,
     @Json(name = "poster_path") val movieImg: String
 
-)
+): Parcelable
