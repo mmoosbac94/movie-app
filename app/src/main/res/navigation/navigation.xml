@@ -13,6 +13,9 @@
             android:id="@+id/action_overviewFragment_to_detailFragment"
             app:destination="@id/detailFragment"
             app:enterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_overviewFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
@@ -23,4 +26,9 @@
             android:name="movie"
             app:argType="com.example.movieapp.database.MovieProperty" />
     </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.movieapp.search.SearchFragment"
+        android:label="Search Movie"
+        tools:layout="@layout/search_fragment" />
 </navigation>

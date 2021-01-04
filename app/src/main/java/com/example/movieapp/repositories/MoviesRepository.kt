@@ -6,7 +6,6 @@ import com.example.movieapp.database.MovieProperty
 import com.example.movieapp.database.MovieResult
 import com.example.movieapp.database.MoviesDatabase
 import com.example.movieapp.network.MovieApi
-import com.example.movieapp.network.MovieApiResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -16,9 +15,18 @@ class MoviesRepository(private val database: MoviesDatabase) {
         try {
             withContext(Dispatchers.IO) {
                 val movieResult: MovieResult = when (itemId) {
-                    R.id.popularMovies -> MovieApi.convertToDdModelWithType(MovieApi.retrofitService.getPopularMovies(), "popular")
-                    R.id.topRatedMovies -> MovieApi.convertToDdModelWithType(MovieApi.retrofitService.getTopRatedMovies(), "topRated")
-                    else -> MovieApi.convertToDdModelWithType(MovieApi.retrofitService.getTopRatedMovies(), "topRated")
+                    R.id.popularMovies -> MovieApi.convertToDdModelWithType(
+                        MovieApi.retrofitService.getPopularMovies(),
+                        "popular"
+                    )
+                    R.id.topRatedMovies -> MovieApi.convertToDdModelWithType(
+                        MovieApi.retrofitService.getTopRatedMovies(),
+                        "topRated"
+                    )
+                    else -> MovieApi.convertToDdModelWithType(
+                        MovieApi.retrofitService.getTopRatedMovies(),
+                        "topRated"
+                    )
                 }
                 database.movieDao.insertAll(movieResult.results)
             }
@@ -36,10 +44,18 @@ class MoviesRepository(private val database: MoviesDatabase) {
     }
 
     suspend fun getTopRatedMovies(): List<MovieProperty> {
-        Log.i("TOOOP", "TOOOP")
         val movies: List<MovieProperty>
         withContext(Dispatchers.IO) {
             movies = database.movieDao.getTopRatedMovies("topRated")
+        }
+        return movies
+    }
+
+    suspend fun getSpecificMovie(movie: String): List<MovieProperty> {
+        val movies: List<MovieProperty>
+        withContext(Dispatchers.IO) {
+            movies =
+                MovieApi.convertToDdModelWithType(MovieApi.retrofitService.getSpecificMovie(movie)).results
         }
         return movies
     }

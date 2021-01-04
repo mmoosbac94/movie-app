@@ -25,6 +25,10 @@ interface MovieApiService {
 
     @GET("3/movie/top_rated?api_key=0c97571ddf07813f8e4e1712ab264a77&language=en-US&page=1")
     suspend fun getTopRatedMovies(): MovieApiResult
+
+    @GET
+    suspend fun getSpecificMovie(movie: String): MovieApiResult
+
 }
 
 object MovieApi {
@@ -33,7 +37,10 @@ object MovieApi {
         retrofit.create(MovieApiService::class.java)
     }
 
-    fun convertToDdModelWithType(movieApiResult: MovieApiResult, type: String): MovieResult {
+    fun convertToDdModelWithType(
+        movieApiResult: MovieApiResult,
+        type: String = "default"
+    ): MovieResult {
         val list: MutableList<MovieProperty> = mutableListOf()
 
         movieApiResult.results.map {

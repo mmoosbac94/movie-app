@@ -44,9 +44,4 @@ class OverviewViewModel(private val moviesRepository: MoviesRepository) : ViewMo
             Log.i("EXCEPTION", e.toString())
         }
     }
-
-
-    fun checkTitle(itemId: Int) {
-
-    }
 }

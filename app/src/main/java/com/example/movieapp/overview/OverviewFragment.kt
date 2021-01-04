@@ -1,9 +1,11 @@
 package com.example.movieapp.overview
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.movieapp.R
 import com.example.movieapp.databinding.FragmentOverviewBinding
@@ -33,9 +35,13 @@ class OverviewFragment : Fragment(R.layout.fragment_overview) {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        getViewModel<OverviewViewModel>().refreshDataFromRepository(item.itemId)
+        when (item.itemId) {
+            R.id.search -> findNavController().navigate(OverviewFragmentDirections.actionOverviewFragmentToSearchFragment())
+            else -> {
+                getViewModel<OverviewViewModel>().refreshDataFromRepository(item.itemId)
+            }
+        }
         return super.onOptionsItemSelected(item)
-
     }
 
     private fun init() {
