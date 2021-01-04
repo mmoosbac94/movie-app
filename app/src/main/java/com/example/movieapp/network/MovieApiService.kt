@@ -1,6 +1,5 @@
 package com.example.movieapp.network
 
-import android.util.Log
 import com.example.movieapp.database.MovieProperty
 import com.example.movieapp.database.MovieResult
 import com.squareup.moshi.Json
@@ -9,6 +8,7 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 private const val BASE_URL = "https://api.themoviedb.org/"
 
@@ -26,8 +26,8 @@ interface MovieApiService {
     @GET("3/movie/top_rated?api_key=0c97571ddf07813f8e4e1712ab264a77&language=en-US&page=1")
     suspend fun getTopRatedMovies(): MovieApiResult
 
-    @GET
-    suspend fun getSpecificMovie(movie: String): MovieApiResult
+    @GET("3/search/movie?api_key=0c97571ddf07813f8e4e1712ab264a77&language=en-US&query=&page=1&include_adult=false")
+    suspend fun getSpecificMovie(@Query("query") movie: String): MovieApiResult
 
 }
 

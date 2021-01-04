@@ -19,8 +19,11 @@ class SearchViewModel(private val moviesRepository: MoviesRepository) : ViewMode
     // search movie over repository and webservice with every input letter (but only every 2 seconds or so)
     // update mutableList and consequently recyclerView
 
+    init {
+        getMovie("Jack")
+    }
 
-    fun getMovie(movie: String) {
+    private fun getMovie(movie: String) {
         try {
             viewModelScope.launch {
                 _movieList.value = moviesRepository.getSpecificMovie(movie)
