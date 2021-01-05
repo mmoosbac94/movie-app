@@ -2,9 +2,12 @@ package com.example.movieapp.network
 
 import com.example.movieapp.database.MovieProperty
 import com.example.movieapp.database.MovieResult
+import com.squareup.moshi.FromJson
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonReader
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import org.jetbrains.annotations.Nullable
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
@@ -12,6 +15,7 @@ import retrofit2.http.Query
 
 private const val BASE_URL = "https://api.themoviedb.org/"
 
+//private val moshi = Moshi.Builder().add(NullToEmptyStringAdapter).add(KotlinJsonAdapterFactory()).build()
 private val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
 
 private val retrofit = Retrofit.Builder()
@@ -67,7 +71,19 @@ data class MovieApiProperty(
     val id: String,
     val title: String,
     val overview: String,
-    @Json(name = "release_date") val releaseDate: String,
-    @Json(name = "vote_average") val voteAverage: Double,
-    @Json(name = "poster_path") val movieImg: String
+    @Json(name = "release_date") val releaseDate: String = "never",
+    @Json(name = "vote_average") val voteAverage: Double = 0.0,
+    @Json(name = "poster_path") var movieImg: String = "/aG416hGy41kwBBbnrP8NCLaxDEr.jpg"
 )
+
+
+//object NullToEmptyStringAdapter {
+//    @FromJson
+//    fun fromJson(reader: JsonReader): String {
+//        if (reader.peek() != JsonReader.Token.NULL) {
+//            return reader.nextString()
+//        }
+//        reader.nextNull<Unit>()
+//        return ""
+//    }
+//}

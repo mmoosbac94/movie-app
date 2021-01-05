@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.movieapp.databinding.SearchFragmentBinding
 import com.example.movieapp.overview.MovieRecyclerViewAdapter
 import org.koin.android.viewmodel.ext.android.getViewModel
+import java.util.*
 
 class SearchFragment : Fragment() {
 
@@ -39,10 +40,20 @@ class SearchFragment : Fragment() {
             adapter.notifyDataSetChanged()
         })
 
-        binding.movieSearchInput.doAfterTextChanged{
-            Log.i("PLEASE", "YES!")
+        binding.movieSearchInput.doAfterTextChanged {
+            if (it.toString().isNotEmpty()) getViewModel<SearchViewModel>().getMovie(it.toString())
         }
 
+//        initAfterTextChangedFunctionality()
+    }
+
+    private fun initAfterTextChangedFunctionality() {
+        var timer = Timer()
+        val delay: Long = 1000
+        binding.movieSearchInput.doAfterTextChanged {
+            timer.cancel()
+            timer = Timer()
+        }
     }
 
 }

@@ -7,12 +7,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.movieapp.R
 import com.example.movieapp.Utils
 import com.example.movieapp.database.MovieProperty
 import com.example.movieapp.databinding.RecyclerviewItemBinding
+import com.example.movieapp.search.SearchFragmentDirections
 
 
 class MovieRecyclerViewAdapter(var movieList: List<MovieProperty>) :
@@ -56,7 +56,9 @@ class MovieRecyclerViewAdapter(var movieList: List<MovieProperty>) :
         private fun initClickListener(viewHolder: MovieViewHolder, movie: MovieProperty) {
             viewHolder.itemView.setOnClickListener {
                 it.findNavController().navigate(
-                    OverviewFragmentDirections.actionOverviewFragmentToDetailFragment(movie)
+                    if(movie.type == "default") {
+                        SearchFragmentDirections.actionSearchFragmentToDetailFragment(movie)
+                    } else OverviewFragmentDirections.actionOverviewFragmentToDetailFragment(movie)
                 )
             }
         }
