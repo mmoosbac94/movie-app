@@ -15,11 +15,6 @@ class SearchViewModel(private val moviesRepository: MoviesRepository) : ViewMode
     private var _movieList = MutableLiveData<List<MovieProperty>>()
     val movieList: MutableLiveData<List<MovieProperty>> get() = _movieList
 
-
-    // search movie over repository and webservice with every input letter (but only every 2 seconds or so)
-    // update mutableList and consequently recyclerView
-
-
     fun getMovie(movie: String) {
         try {
             viewModelScope.launch {

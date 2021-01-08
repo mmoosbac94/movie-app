@@ -15,7 +15,6 @@ import retrofit2.http.Query
 
 private const val BASE_URL = "https://api.themoviedb.org/"
 
-//private val moshi = Moshi.Builder().add(NullToEmptyStringAdapter).add(KotlinJsonAdapterFactory()).build()
 private val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
 
 private val retrofit = Retrofit.Builder()

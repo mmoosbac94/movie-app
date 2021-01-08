@@ -47,13 +47,13 @@ class SearchFragment : Fragment() {
 //        initAfterTextChangedFunctionality()
     }
 
-    private fun initAfterTextChangedFunctionality() {
-        var timer = Timer()
-        val delay: Long = 1000
-        binding.movieSearchInput.doAfterTextChanged {
-            timer.cancel()
-            timer = Timer()
-        }
-    }
+//    private fun initAfterTextChangedFunctionality() {
+//        var timer = Timer()
+//        val delay: Long = 1000
+//        binding.movieSearchInput.doAfterTextChanged {
+//            timer.cancel()
+//            timer = Timer()
+//        }
+//    }
 
 }
