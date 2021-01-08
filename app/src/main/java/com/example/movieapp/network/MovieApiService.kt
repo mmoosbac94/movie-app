@@ -68,22 +68,47 @@ data class MovieApiResult(
 )
 
 data class MovieApiProperty(
-    val id: String,
-    val title: String,
-    val overview: String,
-    @Json(name = "release_date") val releaseDate: String = "never",
-    @Json(name = "vote_average") val voteAverage: Double = 0.0,
-    @Json(name = "poster_path") var movieImg: String = "/aG416hGy41kwBBbnrP8NCLaxDEr.jpg"
-)
+    var _id: String?,
+    var _title: String?,
+    var _overview: String?,
+    @Json(name = "release_date") var _releaseDate: String?,
+    @Json(name = "vote_average") var _voteAverage: Double?,
+    @Json(name = "poster_path") var _movieImg: String?
+) {
 
+    var id: String
+        get() = _id ?: ""
+        set(value) {
+            _id = value
+        }
 
-//object NullToEmptyStringAdapter {
-//    @FromJson
-//    fun fromJson(reader: JsonReader): String {
-//        if (reader.peek() != JsonReader.Token.NULL) {
-//            return reader.nextString()
-//        }
-//        reader.nextNull<Unit>()
-//        return ""
-//    }
-//}
+    var title: String
+        get() = _title ?: ""
+        set(value) {
+            _title = value
+        }
+
+    var overview: String
+        get() = _overview ?: ""
+        set(value) {
+            _overview = value
+        }
+
+    var releaseDate: String
+        get() = _releaseDate ?: ""
+        set(value) {
+            _releaseDate = value
+        }
+
+    var voteAverage: Double
+        get() = _voteAverage ?: 0.0
+        set(value) {
+            _voteAverage = value
+        }
+
+    var movieImg: String
+        get() = _movieImg ?: ""
+        set(value) {
+            _movieImg = value
+        }
+}
