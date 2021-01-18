@@ -39,7 +39,7 @@ class OverviewFragment : Fragment(R.layout.fragment_overview) {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.search -> findNavController().navigate(OverviewFragmentDirections.actionOverviewFragmentToSearchFragment())
+            R.id.searchItem -> findNavController().navigate(OverviewFragmentDirections.actionOverviewFragmentToSearchFragment())
             else -> {
                 viewModel.refreshDataFromRepository(item.itemId)
             }

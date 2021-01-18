@@ -9,10 +9,10 @@ import org.koin.dsl.module
 
 val appModule = module {
 
-    single { MoviesRepository(getDatabase(get())) }
-
     viewModel { OverviewViewModel(get()) }
 
     viewModel { SearchViewModel(get()) }
+
+    single { MoviesRepository(getDatabase(get())) }
 
 }

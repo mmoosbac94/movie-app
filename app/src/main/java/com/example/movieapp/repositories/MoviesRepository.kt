@@ -9,7 +9,7 @@ import com.example.movieapp.network.MovieApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class MoviesRepository(private val database: MoviesDatabase) {
+open class MoviesRepository(private val database: MoviesDatabase) {
 
     suspend fun refreshMovies(itemId: Int) {
         try {
@@ -35,7 +35,7 @@ class MoviesRepository(private val database: MoviesDatabase) {
         }
     }
 
-    suspend fun getPopularMovies(): List<MovieProperty> {
+    open suspend fun getPopularMovies(): List<MovieProperty> {
         val movies: List<MovieProperty>
         withContext(Dispatchers.IO) {
             movies = database.movieDao.getPopularMovies("popular")

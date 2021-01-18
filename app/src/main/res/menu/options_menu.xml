@@ -8,8 +8,8 @@
         android:id="@+id/topRatedMovies"
         android:title="@string/top_rated_movies" />
 
-    <item android:id="@+id/search"
-        android:title="SearchTitle"
+    <item android:id="@+id/searchItem"
+        android:title="@string/search_title"
         android:icon="@drawable/baseline_search_white_18dp"
         app:showAsAction="always"/>
 </menu>

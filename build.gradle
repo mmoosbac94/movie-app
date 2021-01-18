@@ -15,7 +15,7 @@ buildscript {
     }
     ext {
         navigationVersion = "2.3.2"
-        koinVersion = '2.2.1'
+        koinVersion = '2.2.2'
     }
 }
 

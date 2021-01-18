@@ -15,15 +15,7 @@ class MovieApiServiceTest {
 
     @Before
     fun initialize() {
-        val movieApiProperty = MovieApiProperty(
-            "testId",
-            "testTitle",
-            "testOverview",
-            "testReleaseDate",
-            0.0,
-            "testImagePath"
-        )
-        movieApiPropertyList = listOf(movieApiProperty)
+        movieApiPropertyList = listOf(TestData.movieApiProperty)
         movieApiResult = MovieApiResult(movieApiPropertyList)
     }
 

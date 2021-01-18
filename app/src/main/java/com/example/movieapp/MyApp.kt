@@ -1,6 +1,7 @@
 package com.example.movieapp
 
 import android.app.Application
+import android.util.Log
 import com.example.movieapp.di.appModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -11,7 +12,7 @@ class MyApp: Application() {
         super.onCreate()
         startKoin {
             androidContext(this@MyApp)
-            modules(listOf(appModule))
+            modules(appModule)
         }
     }
 

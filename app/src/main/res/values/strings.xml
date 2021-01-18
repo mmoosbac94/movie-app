@@ -3,6 +3,7 @@
     <string name="movie_detail">Movie Detail</string>
     <string name="movie_image">ImageOfMovie</string>
     <string name="top_rated_movies">Top rated movies</string>
+    <string name="search_title">Search Title</string>
     <string name="popular_movies">Popular movies</string>
     <string name="voteAverage">%1$s/10</string>
 </resources>
