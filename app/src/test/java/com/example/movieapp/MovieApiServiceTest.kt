@@ -1,6 +1,7 @@
 package com.example.movieapp
 
 import com.example.movieapp.database.MovieResult
+import com.example.movieapp.database.MovieType
 import com.example.movieapp.network.MovieApi
 import com.example.movieapp.network.MovieApiProperty
 import com.example.movieapp.network.MovieApiResult
@@ -22,13 +23,14 @@ class MovieApiServiceTest {
     @Test
     fun check_if_convertToDBModelWithDefaultType_works() {
         val movieResult: MovieResult = MovieApi.convertToDdModelWithType(movieApiResult)
-        assertEquals("default", movieResult.results[0].type)
+        assertEquals(MovieType.default, movieResult.results[0].type)
     }
 
     @Test
     fun check_if_convertToDBModelWithPopularType_works() {
-        val movieResult: MovieResult = MovieApi.convertToDdModelWithType(movieApiResult, "popular")
-        assertEquals("popular", movieResult.results[0].type)
+        val movieResult: MovieResult =
+            MovieApi.convertToDdModelWithType(movieApiResult, MovieType.popular)
+        assertEquals(MovieType.popular, movieResult.results[0].type)
     }
 
 

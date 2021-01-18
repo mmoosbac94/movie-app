@@ -24,3 +24,12 @@ data class MovieProperty(
     val type: String
 
 ): Parcelable
+
+
+class MovieType {
+    companion object {
+        const val default = "default"
+        const val popular = "popular"
+        const val topRated = "topRated"
+    }
+}

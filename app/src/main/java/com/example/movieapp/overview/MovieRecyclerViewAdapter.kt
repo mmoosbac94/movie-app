@@ -12,6 +12,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.movieapp.R
 import com.example.movieapp.Utils
 import com.example.movieapp.database.MovieProperty
+import com.example.movieapp.database.MovieType
 import com.example.movieapp.databinding.RecyclerviewItemBinding
 import com.example.movieapp.search.SearchFragmentDirections
 
@@ -57,7 +58,7 @@ class MovieRecyclerViewAdapter(var movieList: List<MovieProperty>) :
         private fun initClickListener(viewHolder: MovieViewHolder, movie: MovieProperty) {
             viewHolder.itemView.setOnClickListener {
                 it.findNavController().navigate(
-                    if(movie.type == "default") {
+                    if(movie.type == MovieType.default) {
                         SearchFragmentDirections.actionSearchFragmentToDetailFragment(movie)
                     } else OverviewFragmentDirections.actionOverviewFragmentToDetailFragment(movie)
                 )

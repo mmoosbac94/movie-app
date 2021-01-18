@@ -2,6 +2,7 @@ package com.example.movieapp.network
 
 import com.example.movieapp.database.MovieProperty
 import com.example.movieapp.database.MovieResult
+import com.example.movieapp.database.MovieType
 import com.squareup.moshi.FromJson
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonReader
@@ -42,7 +43,7 @@ object MovieApi {
 
     fun convertToDdModelWithType(
         movieApiResult: MovieApiResult,
-        type: String = "default"
+        type: String = MovieType.default
     ): MovieResult {
         val list: MutableList<MovieProperty> = mutableListOf()
 
