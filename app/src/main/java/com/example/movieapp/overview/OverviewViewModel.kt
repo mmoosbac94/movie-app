@@ -5,6 +5,7 @@ import androidx.lifecycle.*
 import com.example.movieapp.R
 import com.example.movieapp.database.MovieProperty
 import com.example.movieapp.repositories.MoviesRepository
+import com.google.android.play.core.internal.e
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
@@ -26,7 +27,7 @@ class OverviewViewModel(private val moviesRepository: MoviesRepository) : ViewMo
                 getMoviesFromLocalDatabase(itemId)
             }
         } catch (e: Exception) {
-            Log.i("EXCEPTION", e.toString())
+            throw e("Could not refresh data from repository")
         }
     }
 
@@ -41,7 +42,7 @@ class OverviewViewModel(private val moviesRepository: MoviesRepository) : ViewMo
                 _movieList.value = movieList
             }
         } catch (e: Exception) {
-            Log.i("EXCEPTION", e.toString())
+            throw e("Could not get movies from local database")
         }
     }
 }
