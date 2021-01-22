@@ -7,12 +7,13 @@ import com.example.movieapp.database.MovieResult
 import com.example.movieapp.database.MovieType
 import com.example.movieapp.database.MoviesDatabase
 import com.example.movieapp.network.MovieApi
+import com.google.android.play.core.internal.e
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 open class MoviesRepository(private val database: MoviesDatabase) {
 
-    suspend fun refreshMovies(itemId: Int) {
+    open suspend fun refreshMovies(itemId: Int) {
         try {
             withContext(Dispatchers.IO) {
                 val movieResult: MovieResult = when (itemId) {
@@ -32,7 +33,7 @@ open class MoviesRepository(private val database: MoviesDatabase) {
                 database.movieDao.insertAll(movieResult.results)
             }
         } catch (e: Exception) {
-            Log.i("EXCEPTION", e.toString())
+            throw e("Refresh movies from repository failed")
         }
     }
 

@@ -11,6 +11,14 @@
         android:background="@color/black"
         tools:context=".overview.OverviewFragment">
 
+        <TextView
+            android:layout_marginStart="20dp"
+            android:textColor="@color/white"
+            android:text=""
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/title"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/movie_list_recyclerview"
             android:layout_width="match_parent"

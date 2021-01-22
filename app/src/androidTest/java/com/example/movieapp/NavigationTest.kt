@@ -1,5 +1,6 @@
 package com.example.movieapp
 
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.navigation.Navigation
@@ -29,6 +30,7 @@ import org.junit.runner.RunWith
 import org.koin.core.context.loadKoinModules
 import org.koin.dsl.module
 import org.koin.test.KoinTest
+import org.mockito.ArgumentMatchers.anyInt
 import org.mockito.Mockito
 import java.util.concurrent.TimeoutException
 import java.util.regex.Matcher
@@ -49,6 +51,7 @@ class NavigationTest : KoinTest {
 
         Mockito.`when`(mockMoviesRepository.getPopularMovies())
             .thenReturn(TestDataInstrumental.listMovieProperties)
+        Mockito.`when`(mockMoviesRepository.refreshMovies(anyInt())).then { }
 
         navController = TestNavHostController(
             ApplicationProvider.getApplicationContext()

@@ -40,23 +40,31 @@ class OverviewFragment : Fragment(R.layout.fragment_overview) {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.searchItem -> findNavController().navigate(OverviewFragmentDirections.actionOverviewFragmentToSearchFragment())
-            else -> {
+            R.id.topRatedMovies -> {
                 viewModel.refreshDataFromRepository(item.itemId)
+                viewModel.setRecyclerViewTitle(getString(R.string.top_rated_movies))
+            }
+            R.id.popularMovies -> {
+                viewModel.refreshDataFromRepository(item.itemId)
+                viewModel.setRecyclerViewTitle(getString(R.string.popular_movies))
             }
         }
         return super.onOptionsItemSelected(item)
     }
 
     private fun init() {
-
         binding.movieListRecyclerview.layoutManager = GridLayoutManager(context, 2)
         val adapter = MovieRecyclerViewAdapter(emptyList())
         binding.movieListRecyclerview.adapter = adapter
 
-        viewModel.movieList.observe(viewLifecycleOwner, Observer {
+        viewModel.movieList.observe(viewLifecycleOwner) {
             adapter.movieList = it
             adapter.notifyDataSetChanged()
-        })
+        }
+
+        viewModel.recyclerViewTitle.observe(viewLifecycleOwner) {
+            binding.title.text = it
+        }
 
     }
 }
