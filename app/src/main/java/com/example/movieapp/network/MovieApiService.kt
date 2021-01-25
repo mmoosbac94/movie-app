@@ -70,10 +70,47 @@ data class MovieApiResult(
 )
 
 data class MovieApiProperty(
-    var id: String = "",
-    var title: String = "",
-    var overview: String = "",
-    @Json(name = "release_date") var releaseDate: String = "",
-    @Json(name = "vote_average") var voteAverage: Double = 0.0,
-    @Json(name = "poster_path") var movieImg: String = ""
-)
+    var _id: String?,
+    var _title: String?,
+    var _overview: String?,
+    @Json(name = "release_date") var _releaseDate: String?,
+    @Json(name = "vote_average") var _voteAverage: Double?,
+    @Json(name = "poster_path") var _movieImg: String?
+) {
+
+    var id: String
+        get() = _id ?: ""
+        set(value) {
+            _id = value
+        }
+
+    var title: String
+        get() = _title ?: ""
+        set(value) {
+            _title = value
+        }
+
+    var overview: String
+        get() = _overview ?: ""
+        set(value) {
+            _overview = value
+        }
+
+    var releaseDate: String
+        get() = _releaseDate ?: ""
+        set(value) {
+            _releaseDate = value
+        }
+
+    var voteAverage: Double
+        get() = _voteAverage ?: 0.0
+        set(value) {
+            _voteAverage = value
+        }
+
+    var movieImg: String
+        get() = _movieImg ?: ""
+        set(value) {
+            _movieImg = value
+        }
+}
