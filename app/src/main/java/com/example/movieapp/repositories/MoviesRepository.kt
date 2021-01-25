@@ -7,16 +7,15 @@ import com.example.movieapp.database.MovieResult
 import com.example.movieapp.database.MovieType
 import com.example.movieapp.database.MoviesDatabase
 import com.example.movieapp.network.MovieApi
-import com.google.android.play.core.internal.e
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-open class MoviesRepository(private val database: MoviesDatabase) {
+class MoviesRepository(private val database: MoviesDatabase) : MoviesRepositoryInterface {
 
-    open suspend fun refreshMovies(itemId: Int) {
+    override suspend fun refreshMovies(movieTypeId: Int) {
         try {
             withContext(Dispatchers.IO) {
-                val movieResult: MovieResult = when (itemId) {
+                val movieResult: MovieResult = when (movieTypeId) {
                     R.id.popularMovies -> MovieApi.convertToDdModelWithType(
                         MovieApi.retrofitService.getPopularMovies(),
                         MovieType.popular
@@ -33,11 +32,11 @@ open class MoviesRepository(private val database: MoviesDatabase) {
                 database.movieDao.insertAll(movieResult.results)
             }
         } catch (e: Exception) {
-            throw e("Refresh movies from repository failed")
+            Log.e("Exception:", e.toString())
         }
     }
 
-    open suspend fun getPopularMovies(): List<MovieProperty> {
+    override suspend fun getPopularMovies(): List<MovieProperty> {
         val movies: List<MovieProperty>
         withContext(Dispatchers.IO) {
             movies = database.movieDao.getPopularMovies(MovieType.popular)
@@ -45,7 +44,7 @@ open class MoviesRepository(private val database: MoviesDatabase) {
         return movies
     }
 
-    suspend fun getTopRatedMovies(): List<MovieProperty> {
+    override suspend fun getTopRatedMovies(): List<MovieProperty> {
         val movies: List<MovieProperty>
         withContext(Dispatchers.IO) {
             movies = database.movieDao.getTopRatedMovies(MovieType.topRated)
@@ -53,7 +52,7 @@ open class MoviesRepository(private val database: MoviesDatabase) {
         return movies
     }
 
-    suspend fun getSpecificMovie(movie: String): List<MovieProperty> {
+    override suspend fun getSpecificMovie(movie: String): List<MovieProperty> {
         val movies: List<MovieProperty>
         withContext(Dispatchers.IO) {
             movies =

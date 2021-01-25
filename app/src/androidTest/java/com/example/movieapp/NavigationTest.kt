@@ -1,6 +1,5 @@
 package com.example.movieapp
 
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.navigation.Navigation
@@ -24,16 +23,14 @@ import com.example.movieapp.repositories.MoviesRepository
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers.equalTo
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.koin.core.context.loadKoinModules
 import org.koin.dsl.module
 import org.koin.test.KoinTest
-import org.mockito.ArgumentMatchers.anyInt
-import org.mockito.Mockito
 import java.util.concurrent.TimeoutException
-import java.util.regex.Matcher
+import io.mockk.mockkClass
+import io.mockk.coEvery
 
 
 @RunWith(AndroidJUnit4::class)
@@ -47,17 +44,12 @@ class NavigationTest : KoinTest {
     @Before
     fun initialize(): Unit = runBlocking {
 
-        mockMoviesRepository = Mockito.mock(MoviesRepository::class.java)
+        mockMoviesRepository = mockkClass(MoviesRepository::class)
 
-        Mockito.`when`(mockMoviesRepository.getPopularMovies())
-            .thenReturn(TestDataInstrumental.listMovieProperties)
-        Mockito.`when`(mockMoviesRepository.refreshMovies(anyInt())).then { }
+        coEvery { mockMoviesRepository.getPopularMovies() } returns TestDataInstrumental.listMovieProperties
+        coEvery { mockMoviesRepository.refreshMovies(any()) } answers {}
 
-        navController = TestNavHostController(
-            ApplicationProvider.getApplicationContext()
-        )
-
-        navController.setGraph(R.navigation.navigation)
+        prepareTestNavController()
 
         loadKoinModules(module {
             single(override = true) { mockMoviesRepository }
@@ -68,6 +60,13 @@ class NavigationTest : KoinTest {
         overViewScenario.onFragment {
             Navigation.setViewNavController(it.requireView(), navController)
         }
+    }
+
+    private fun prepareTestNavController() {
+        navController = TestNavHostController(
+            ApplicationProvider.getApplicationContext()
+        )
+        navController.setGraph(R.navigation.navigation)
     }
 
     @Test
@@ -88,7 +87,6 @@ class NavigationTest : KoinTest {
         )
         assertThat(navController.currentDestination?.id, equalTo(R.id.detailFragment))
     }
-
 
 
     // Helper function to wait for item in recyclerview
@@ -119,7 +117,7 @@ class NavigationTest : KoinTest {
                     // Loops the main thread for a specified period of time.
                     // Control may not return immediately, instead it'll return after the provided delay has passed and the queue is in an idle state again.
                     uiController.loopMainThreadForAtLeast(100)
-                } while (System.currentTimeMillis() <endTime) // in case of a timeout we throw an exception -&gt; test fails
+                } while (System.currentTimeMillis() < endTime) // in case of a timeout we throw an exception -&gt; test fails
                 throw PerformException.Builder()
                     .withCause(TimeoutException())
                     .withActionDescription(this.description)
