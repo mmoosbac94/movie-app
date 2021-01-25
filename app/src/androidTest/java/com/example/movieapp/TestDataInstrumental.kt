@@ -11,7 +11,7 @@ class TestDataInstrumental {
             "testOverview",
             "testReleaseDate",
             0.0,
-            "drawable://" + R.drawable.test_image,
+            "drawable://" + R.drawable.no_image,
             "popular"
         )
 

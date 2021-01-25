@@ -1,5 +1,6 @@
 package com.example.movieapp.network
 
+import android.util.Log
 import com.example.movieapp.database.MovieProperty
 import com.example.movieapp.database.MovieResult
 import com.example.movieapp.database.MovieType
@@ -49,7 +50,7 @@ object MovieApi {
         val list: MutableList<MovieProperty> = mutableListOf()
 
         movieApiResult.results.map {
-            val movieProperty: MovieProperty = MovieProperty(
+            val movieProperty = MovieProperty(
                 id = it.id,
                 title = it.title,
                 overview = it.overview,

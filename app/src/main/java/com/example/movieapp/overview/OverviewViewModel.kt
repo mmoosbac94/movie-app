@@ -1,6 +1,5 @@
 package com.example.movieapp.overview
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.example.movieapp.R
 import com.example.movieapp.database.MovieProperty
@@ -12,7 +11,7 @@ import java.lang.Exception
 
 class OverviewViewModel(private val moviesRepository: MoviesRepository) : ViewModel() {
 
-    private var _recyclerViewTitle = MutableLiveData<String>("Popular movies")
+    private var _recyclerViewTitle = MutableLiveData<String>()
     val recyclerViewTitle: LiveData<String>
         get() = _recyclerViewTitle
 
@@ -24,22 +23,22 @@ class OverviewViewModel(private val moviesRepository: MoviesRepository) : ViewMo
         refreshDataFromRepository(R.id.popularMovies)
     }
 
-    fun refreshDataFromRepository(itemId: Int) {
+    fun refreshDataFromRepository(movieTypeId: Int) {
         try {
             viewModelScope.launch {
-                moviesRepository.refreshMovies(itemId)
-                getMoviesFromLocalDatabase(itemId)
+                moviesRepository.refreshMovies(movieTypeId)
+                getMoviesFromLocalDatabase(movieTypeId)
             }
         } catch (e: Exception) {
             throw e("Could not refresh data from repository")
         }
     }
 
-    private fun getMoviesFromLocalDatabase(itemId: Int) {
+    private fun getMoviesFromLocalDatabase(movieTypeId: Int) {
         var movieList: List<MovieProperty> = mutableListOf()
         try {
             viewModelScope.launch {
-                when(itemId) {
+                when(movieTypeId) {
                     R.id.popularMovies -> movieList = moviesRepository.getPopularMovies()
                     R.id.topRatedMovies -> movieList = moviesRepository.getTopRatedMovies()
                 }

@@ -3,12 +3,10 @@ package com.example.movieapp.overview
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.movieapp.R
 import com.example.movieapp.databinding.FragmentOverviewBinding
-import org.koin.android.viewmodel.ext.android.getViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class OverviewFragment : Fragment(R.layout.fragment_overview) {
@@ -56,6 +54,7 @@ class OverviewFragment : Fragment(R.layout.fragment_overview) {
         binding.movieListRecyclerview.layoutManager = GridLayoutManager(context, 2)
         val adapter = MovieRecyclerViewAdapter(emptyList())
         binding.movieListRecyclerview.adapter = adapter
+        binding.title.text = getString(R.string.popular_movies)
 
         viewModel.movieList.observe(viewLifecycleOwner) {
             adapter.movieList = it

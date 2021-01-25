@@ -14,7 +14,6 @@ class MainActivity : AppCompatActivity() {
 
         val navController = this.findNavController(R.id.movieNavHostFragment)
         NavigationUI.setupActionBarWithNavController(this, navController)
-
     }
 
     override fun onSupportNavigateUp(): Boolean {

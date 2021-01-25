@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.movieapp.database.MovieProperty
 import com.example.movieapp.repositories.MoviesRepository
+import com.google.android.play.core.internal.e
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
@@ -21,7 +22,7 @@ class SearchViewModel(private val moviesRepository: MoviesRepository) : ViewMode
                 _movieList.value = moviesRepository.getSpecificMovie(movie)
             }
         } catch (e: Exception) {
-            Log.i("Exception", e.toString())
+            throw e("Could not get specific movie")
         }
     }
 
