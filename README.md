@@ -12,8 +12,8 @@ The app was built using:
 - Retrofit for API-request + Moshi for parsing
 - Glide for loading images
 - RecyclerView
-- Room in order to store movies locally
+- Room in order to store popular and top rated movies locally
 
-- Mockito (e.g. mock repository)
+- Mockk (e.g. mock repository)
 - Navigation Testing (TestNavHostController)
 - Espresso combined with Navigation Testing
