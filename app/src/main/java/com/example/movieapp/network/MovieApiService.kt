@@ -1,15 +1,11 @@
 package com.example.movieapp.network
 
-import android.util.Log
-import com.example.movieapp.database.MovieProperty
-import com.example.movieapp.database.MovieResult
-import com.example.movieapp.database.MovieType
-import com.squareup.moshi.FromJson
+import com.example.movieapp.models.MovieProperty
+import com.example.movieapp.models.MovieResult
+import com.example.movieapp.models.MovieType
 import com.squareup.moshi.Json
-import com.squareup.moshi.JsonReader
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import org.jetbrains.annotations.Nullable
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET

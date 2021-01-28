@@ -1,10 +1,10 @@
-package com.example.movieapp.database
+package com.example.movieapp.models
 
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 data class MovieResult(
     val results: List<MovieProperty>

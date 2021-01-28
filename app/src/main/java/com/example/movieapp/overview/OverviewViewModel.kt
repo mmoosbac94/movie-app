@@ -2,7 +2,7 @@ package com.example.movieapp.overview
 
 import androidx.lifecycle.*
 import com.example.movieapp.R
-import com.example.movieapp.database.MovieProperty
+import com.example.movieapp.models.MovieProperty
 import com.example.movieapp.repositories.MoviesRepository
 import com.google.android.play.core.internal.e
 import kotlinx.coroutines.launch

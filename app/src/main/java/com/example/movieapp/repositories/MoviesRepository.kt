@@ -2,9 +2,9 @@ package com.example.movieapp.repositories
 
 import android.util.Log
 import com.example.movieapp.R
-import com.example.movieapp.database.MovieProperty
-import com.example.movieapp.database.MovieResult
-import com.example.movieapp.database.MovieType
+import com.example.movieapp.models.MovieProperty
+import com.example.movieapp.models.MovieResult
+import com.example.movieapp.models.MovieType
 import com.example.movieapp.database.MoviesDatabase
 import com.example.movieapp.network.MovieApi
 import kotlinx.coroutines.Dispatchers

@@ -1,6 +1,6 @@
 package com.example.movieapp
 
-import com.example.movieapp.database.MovieProperty
+import com.example.movieapp.models.MovieProperty
 
 class TestDataInstrumental {
 

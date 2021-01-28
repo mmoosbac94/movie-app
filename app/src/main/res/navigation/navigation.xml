@@ -24,7 +24,7 @@
         tools:layout="@layout/fragment_detail">
         <argument
             android:name="movie"
-            app:argType="com.example.movieapp.database.MovieProperty" />
+            app:argType="com.example.movieapp.models.MovieProperty" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"

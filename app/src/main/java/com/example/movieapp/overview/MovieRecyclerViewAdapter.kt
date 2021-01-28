@@ -1,18 +1,16 @@
 package com.example.movieapp.overview
 
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.request.RequestOptions
 import com.example.movieapp.R
 import com.example.movieapp.Utils
-import com.example.movieapp.database.MovieProperty
-import com.example.movieapp.database.MovieType
+import com.example.movieapp.models.MovieProperty
+import com.example.movieapp.models.MovieType
 import com.example.movieapp.databinding.RecyclerviewItemBinding
 import com.example.movieapp.search.SearchFragmentDirections
 

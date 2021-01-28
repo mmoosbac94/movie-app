@@ -1,7 +1,7 @@
 package com.example.movieapp
 
-import com.example.movieapp.database.MovieResult
-import com.example.movieapp.database.MovieType
+import com.example.movieapp.models.MovieResult
+import com.example.movieapp.models.MovieType
 import com.example.movieapp.network.MovieApi
 import com.example.movieapp.network.MovieApiProperty
 import com.example.movieapp.network.MovieApiResult

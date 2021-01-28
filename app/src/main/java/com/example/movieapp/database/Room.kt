@@ -2,6 +2,7 @@ package com.example.movieapp.database
 
 import android.content.Context
 import androidx.room.*
+import com.example.movieapp.models.MovieProperty
 
 @Dao
 interface MovieDao {

@@ -1,11 +1,10 @@
 package com.example.movieapp.search
 
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.movieapp.database.MovieProperty
+import com.example.movieapp.models.MovieProperty
 import com.example.movieapp.repositories.MoviesRepository
 import com.google.android.play.core.internal.e
 import kotlinx.coroutines.launch
