@@ -20,8 +20,7 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.example.movieapp.detail.DetailFragment"
-        android:label="@string/movie_detail"
-        tools:layout="@layout/fragment_detail">
+        android:label="@string/movie_detail">
         <argument
             android:name="movie"
             app:argType="com.example.movieapp.models.MovieProperty" />
