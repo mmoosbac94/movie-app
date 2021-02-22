@@ -1,6 +1,8 @@
 package com.example.movieapp
 
+import android.util.DisplayMetrics
 import android.widget.ImageView
+import androidx.fragment.app.FragmentActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
@@ -21,6 +23,14 @@ class Utils {
             Glide.with(movieImageView.context).setDefaultRequestOptions(requestOptions)
                 .load(movieImageUrl).into(movieImageView)
         }
+
+
+//        fun getScreenWidth(activity: FragmentActivity?): Int {
+//            val displayMetrics = DisplayMetrics()
+//            activity?.windowManager?.defaultDisplay?.getMetrics(displayMetrics)
+//            return displayMetrics.widthPixels
+//        }
+
     }
 
 

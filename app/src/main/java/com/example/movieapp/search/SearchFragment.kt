@@ -10,7 +10,6 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.movieapp.databinding.SearchFragmentBinding
 import com.example.movieapp.overview.MovieRecyclerViewAdapter
-import org.koin.android.viewmodel.ext.android.getViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class SearchFragment : Fragment() {
