@@ -3,6 +3,7 @@ package com.example.movieapp.overview
 import android.os.Bundle
 import android.view.*
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -123,7 +124,11 @@ class OverviewFragment : Fragment() {
                 Image(
                     bitmap = it.asImageBitmap(),
                     contentDescription = "MovieImg",
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth().clickable {
+                        findNavController().navigate(
+                            OverviewFragmentDirections.actionOverviewFragmentToDetailFragment(movie)
+                        )
+                    },
                     contentScale = ContentScale.Crop
                 )
             }
