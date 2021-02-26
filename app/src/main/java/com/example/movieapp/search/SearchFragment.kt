@@ -52,14 +52,14 @@ class SearchFragment : Fragment() {
     @Composable
     fun MovieLazyColumn() {
 
-        val fn = { movie: MovieProperty ->
+        val onItemClick = { movie: MovieProperty ->
             requireParentFragment().findNavController().navigate(
                 SearchFragmentDirections.actionSearchFragmentToDetailFragment(movie)
             )
         }
 
         val movieList by viewModel.movieList.observeAsState(emptyList())
-        MovieColumn(movies = movieList, fn)
+        MovieColumn(movies = movieList, onItemClick, cols = 1)
     }
 
 

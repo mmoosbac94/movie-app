@@ -60,7 +60,7 @@ class OverviewFragment : Fragment() {
         val movieList by viewModel.movieList.observeAsState(emptyList())
         val genericMovieTitle = viewModel.genericMovieTitle
 
-        val fn = { movie: MovieProperty ->
+        val onItemClick = { movie: MovieProperty ->
             requireParentFragment().findNavController().navigate(
                 OverviewFragmentDirections.actionOverviewFragmentToDetailFragment(movie)
             )
@@ -68,7 +68,7 @@ class OverviewFragment : Fragment() {
 
         Column {
             GenericMovieTerm(genericMovieTitle)
-            MovieColumn(movieList, fn)
+            MovieColumn(movieList, onItemClick)
         }
     }
 

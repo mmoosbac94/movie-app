@@ -13,24 +13,34 @@ import com.example.movieapp.models.MovieProperty
 @Composable
 fun MovieColumn(
     movies: List<MovieProperty>,
-    fn: (MovieProperty) -> Unit,
+    onItemClick: (MovieProperty) -> Unit,
     cols: Int = 2
 ) {
     val chunkedMovieList = movies.chunked(cols)
     LazyColumn {
+
+        if (cols == 1) {
+            items(items = movies) { movie ->
+                Box(Modifier.padding(top = 50.dp, start = 50.dp, end = 50.dp)) {
+                    MovieItem(movie = movie, onItemClick = onItemClick)
+                }
+            }
+        }
+
         items(items = chunkedMovieList) { chunkedList ->
             Row(modifier = Modifier.padding(top = 5.dp, bottom = 5.dp)) {
                 for (movie in chunkedList) {
                     if (chunkedList.size == 2) {
-                        Box(Modifier.weight(100f)) {
-                            MovieItem(movie = movie, fn)
+                        Box(Modifier.weight(1f)) {
+                            MovieItem(movie = movie, onItemClick)
                         }
                     } else {
                         Box(Modifier.weight(1f)) {
-                            MovieItem(movie = movie, fn)
+                            MovieItem(movie = movie, onItemClick)
                         }
+
+                        Box(Modifier.weight(1f)) {}
                     }
-                    Box(Modifier.weight(1f)) {}
                 }
             }
         }

@@ -24,7 +24,7 @@ import com.example.movieapp.utils.loadPicture
 
 
 @Composable
-fun MovieItem(movie: MovieProperty, fn: (MovieProperty) -> Unit) {
+fun MovieItem(movie: MovieProperty, onItemClick: (MovieProperty) -> Unit) {
 
     val image =
         loadPicture(movieImageURL = movie.movieImg, defaultImage = DEFAULT_RECIPE_IMAGE).value
@@ -38,7 +38,7 @@ fun MovieItem(movie: MovieProperty, fn: (MovieProperty) -> Unit) {
                 bitmap = it.asImageBitmap(),
                 contentDescription = "MovieImg",
                 modifier = Modifier.fillMaxWidth().clickable {
-                    fn(movie)
+                    onItemClick(movie)
                 },
                 contentScale = ContentScale.Crop
             )
