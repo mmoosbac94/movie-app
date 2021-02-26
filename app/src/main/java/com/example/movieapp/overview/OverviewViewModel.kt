@@ -13,7 +13,7 @@ class OverviewViewModel(private val moviesRepository: MoviesRepository) : ViewMo
 
     lateinit var genericMovieTitle: String
 
-    private var _movieList = MutableLiveData<List<MovieProperty>>()
+    private var _movieList = MutableLiveData<List<MovieProperty>>(emptyList())
     val movieList: LiveData<List<MovieProperty>>
         get() = _movieList
 

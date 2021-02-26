@@ -18,8 +18,10 @@ const val DEFAULT_RECIPE_IMAGE = R.drawable.loading_img
 const val MOVIE_BASE_URL = "https://image.tmdb.org/t/p/w500"
 
 @Composable
-fun loadPicture(url: String, @DrawableRes defaultImage: Int): MutableState<Bitmap?> {
+fun loadPicture(movieImageURL: String, @DrawableRes defaultImage: Int): MutableState<Bitmap?> {
     val bitmapState: MutableState<Bitmap?> = mutableStateOf(null)
+
+    val movieUrl = MOVIE_BASE_URL + movieImageURL
 
     Glide.with(LocalContext.current)
         .asBitmap()
@@ -33,7 +35,7 @@ fun loadPicture(url: String, @DrawableRes defaultImage: Int): MutableState<Bitma
 
     Glide.with(LocalContext.current)
         .asBitmap()
-        .load(url)
+        .load(movieUrl)
         .into(object: CustomTarget<Bitmap>() {
             override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                 bitmapState.value = resource

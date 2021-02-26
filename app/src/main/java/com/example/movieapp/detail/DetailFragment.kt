@@ -54,10 +54,8 @@ class DetailFragment : Fragment() {
 @Composable
 fun DetailsScreenContent(movie: MovieProperty) {
 
-    val movieUrl = MOVIE_BASE_URL + movie.movieImg
-
     val image =
-        loadPicture(url = movieUrl, defaultImage = DEFAULT_RECIPE_IMAGE).value
+        loadPicture(movieImageURL = movie.movieImg, defaultImage = DEFAULT_RECIPE_IMAGE).value
 
     LazyColumn(horizontalAlignment = Alignment.CenterHorizontally) {
         item {

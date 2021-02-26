@@ -5,44 +5,92 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.widget.doAfterTextChanged
-import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.GridLayoutManager
-import com.example.movieapp.databinding.SearchFragmentBinding
-import com.example.movieapp.overview.MovieRecyclerViewAdapter
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.unit.dp
 import org.koin.android.viewmodel.ext.android.viewModel
+import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.navigation.fragment.findNavController
+import com.example.movieapp.composables.MovieColumn
+import com.example.movieapp.models.MovieProperty
+
 
 class SearchFragment : Fragment() {
 
-
-    private lateinit var binding: SearchFragmentBinding
+    // Access viewModel via Koin
     private val viewModel: SearchViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        binding = SearchFragmentBinding.inflate(inflater)
+    ): View {
 
-        init()
-
-        return binding.root
+        return ComposeView(requireContext()).apply {
+            setContent {
+                MaterialTheme {
+                    Scaffold(backgroundColor = Color.Black) {
+                        Column {
+                            CustomSearchBar()
+                            MovieLazyColumn()
+                        }
+                    }
+                }
+            }
+        }
     }
 
-    private fun init() {
-        binding.movieListRecyclerview.layoutManager = GridLayoutManager(context, 1)
-        val adapter = MovieRecyclerViewAdapter(emptyList())
-        binding.movieListRecyclerview.adapter = adapter
 
-        viewModel.movieList.observe(viewLifecycleOwner, Observer {
-            adapter.movieList = it
-            adapter.notifyDataSetChanged()
-        })
+    @Composable
+    fun MovieLazyColumn() {
 
-        binding.movieSearchInput.doAfterTextChanged {
-            if (it.toString().isNotEmpty()) viewModel.getMovie(it.toString())
+        val fn = { movie: MovieProperty ->
+            requireParentFragment().findNavController().navigate(
+                SearchFragmentDirections.actionSearchFragmentToDetailFragment(movie)
+            )
         }
 
+        val movieList by viewModel.movieList.observeAsState(emptyList())
+        MovieColumn(movies = movieList, fn)
     }
 
+
+    @Composable
+    fun CustomSearchBar() {
+        Surface(
+            elevation = 8.dp,
+            modifier = Modifier.fillMaxWidth(),
+            color = Color.White
+        ) {
+            Row(modifier = Modifier.fillMaxWidth()) {
+                CustomTextField()
+            }
+        }
+    }
+
+    @Composable
+    fun CustomTextField() {
+
+        var text by remember { mutableStateOf("") }
+
+        TextField(
+            value = text,
+            onValueChange = { newValue ->
+                text = newValue
+                if (newValue.isNotEmpty()) viewModel.getMovie(newValue)
+            },
+            label = {
+                Text(text = "Search")
+            },
+            modifier = Modifier.fillMaxWidth()
+        )
+    }
 }
