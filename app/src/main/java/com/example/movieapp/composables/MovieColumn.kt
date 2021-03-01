@@ -38,7 +38,6 @@ fun MovieColumn(
                         Box(Modifier.weight(1f)) {
                             MovieItem(movie = movie, onItemClick)
                         }
-
                         Box(Modifier.weight(1f)) {}
                     }
                 }

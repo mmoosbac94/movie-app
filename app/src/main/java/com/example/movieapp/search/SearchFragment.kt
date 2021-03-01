@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -19,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import org.koin.android.viewmodel.ext.android.viewModel
 import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.navigation.fragment.findNavController
 import com.example.movieapp.composables.MovieColumn
 import com.example.movieapp.models.MovieProperty
@@ -90,7 +92,11 @@ class SearchFragment : Fragment() {
             label = {
                 Text(text = "Search")
             },
-            modifier = Modifier.fillMaxWidth()
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Text
+            ),
+            modifier = Modifier.fillMaxWidth(),
+            activeColor = Color.Gray
         )
     }
 }
