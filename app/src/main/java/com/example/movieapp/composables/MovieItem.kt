@@ -19,7 +19,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.movieapp.R
 import com.example.movieapp.models.MovieProperty
-import com.example.movieapp.utils.DEFAULT_RECIPE_IMAGE
 import com.example.movieapp.utils.loadPicture
 
 
@@ -27,7 +26,7 @@ import com.example.movieapp.utils.loadPicture
 fun MovieItem(movie: MovieProperty, onItemClick: (MovieProperty) -> Unit) {
 
     val image =
-        loadPicture(movieImageURL = movie.movieImg, defaultImage = DEFAULT_RECIPE_IMAGE).value
+        loadPicture(movieImageURL = movie.movieImg).value
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,

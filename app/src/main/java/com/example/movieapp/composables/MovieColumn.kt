@@ -16,29 +16,31 @@ fun MovieColumn(
     onItemClick: (MovieProperty) -> Unit,
     cols: Int = 2
 ) {
-    val chunkedMovieList = movies.chunked(cols)
     LazyColumn {
 
         if (cols == 1) {
             items(items = movies) { movie ->
-                Box(Modifier.padding(top = 50.dp, start = 50.dp, end = 50.dp)) {
+                Box(Modifier.padding(top = 20.dp, start = 50.dp, end = 50.dp)) {
                     MovieItem(movie = movie, onItemClick = onItemClick)
                 }
             }
-        }
+        } else {
 
-        items(items = chunkedMovieList) { chunkedList ->
-            Row(modifier = Modifier.padding(top = 5.dp, bottom = 5.dp)) {
-                for (movie in chunkedList) {
-                    if (chunkedList.size == 2) {
-                        Box(Modifier.weight(1f)) {
-                            MovieItem(movie = movie, onItemClick)
+            val chunkedMovieList = movies.chunked(cols)
+
+            items(items = chunkedMovieList) { chunkedList ->
+                Row(modifier = Modifier.padding(top = 5.dp, bottom = 5.dp)) {
+                    for (movie in chunkedList) {
+                        if (chunkedList.size == 2) {
+                            Box(Modifier.weight(1f)) {
+                                MovieItem(movie = movie, onItemClick)
+                            }
+                        } else {
+                            Box(Modifier.weight(1f)) {
+                                MovieItem(movie = movie, onItemClick)
+                            }
+                            Box(Modifier.weight(1f)) {}
                         }
-                    } else {
-                        Box(Modifier.weight(1f)) {
-                            MovieItem(movie = movie, onItemClick)
-                        }
-                        Box(Modifier.weight(1f)) {}
                     }
                 }
             }

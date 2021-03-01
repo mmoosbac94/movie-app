@@ -23,8 +23,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.movieapp.R
 import com.example.movieapp.models.MovieProperty
-import com.example.movieapp.utils.DEFAULT_RECIPE_IMAGE
-import com.example.movieapp.utils.MOVIE_BASE_URL
 import com.example.movieapp.utils.loadPicture
 
 
@@ -55,7 +53,7 @@ class DetailFragment : Fragment() {
 fun DetailsScreenContent(movie: MovieProperty) {
 
     val image =
-        loadPicture(movieImageURL = movie.movieImg, defaultImage = DEFAULT_RECIPE_IMAGE).value
+        loadPicture(movieImageURL = movie.movieImg).value
 
     LazyColumn(horizontalAlignment = Alignment.CenterHorizontally) {
         item {
