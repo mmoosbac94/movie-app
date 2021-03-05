@@ -31,7 +31,7 @@ fun loadPicture(movie: MovieProperty): MutableState<Bitmap?> {
 
     Glide.with(LocalContext.current)
         .asBitmap()
-        .load(R.drawable.loading_img)
+        .load(R.drawable.test_image)
         .into(object : CustomTarget<Bitmap>() {
             override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                 bitmapState.value = resource

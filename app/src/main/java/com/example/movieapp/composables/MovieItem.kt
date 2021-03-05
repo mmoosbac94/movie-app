@@ -63,6 +63,7 @@ fun MovieItem(movie: MovieProperty, onItemClick: (MovieProperty) -> Unit) {
                 fontSize = 14.sp
             )
         )
+
     }
 
 }
