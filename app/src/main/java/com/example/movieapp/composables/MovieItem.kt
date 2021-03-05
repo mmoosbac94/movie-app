@@ -9,6 +9,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -26,7 +27,7 @@ import com.example.movieapp.utils.loadPicture
 fun MovieItem(movie: MovieProperty, onItemClick: (MovieProperty) -> Unit) {
 
     val image =
-        loadPicture(movieImageURL = movie.movieImg).value
+        loadPicture(movie).value
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -39,13 +40,13 @@ fun MovieItem(movie: MovieProperty, onItemClick: (MovieProperty) -> Unit) {
                 modifier = Modifier.fillMaxWidth().clickable {
                     onItemClick(movie)
                 },
-                contentScale = ContentScale.Crop
             )
         }
         Text(
             text = movie.title,
             modifier = Modifier.padding(top = 7.dp),
             style = TextStyle(
+                color = Color.White,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center,
                 fontSize = 16.sp
@@ -58,6 +59,7 @@ fun MovieItem(movie: MovieProperty, onItemClick: (MovieProperty) -> Unit) {
             ),
             modifier = Modifier.padding(top = 3.dp),
             style = TextStyle(
+                color = Color.White,
                 fontSize = 14.sp
             )
         )

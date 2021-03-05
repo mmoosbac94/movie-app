@@ -53,7 +53,7 @@ class DetailFragment : Fragment() {
 fun DetailsScreenContent(movie: MovieProperty) {
 
     val image =
-        loadPicture(movieImageURL = movie.movieImg).value
+        loadPicture(movie = movie).value
 
     LazyColumn(horizontalAlignment = Alignment.CenterHorizontally) {
         item {
@@ -61,8 +61,7 @@ fun DetailsScreenContent(movie: MovieProperty) {
                 Image(
                     bitmap = it.asImageBitmap(),
                     contentDescription = "MovieImg",
-                    modifier = Modifier.width(220.dp).padding(top = 30.dp, bottom = 40.dp),
-                    contentScale = ContentScale.Crop
+                    modifier = Modifier.padding(top = 30.dp, bottom = 40.dp).size(250.dp),
                 )
             }
             Text(

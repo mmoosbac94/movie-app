@@ -3,9 +3,11 @@ package com.example.movieapp.composables
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.movieapp.models.MovieProperty
@@ -16,11 +18,11 @@ fun MovieColumn(
     onItemClick: (MovieProperty) -> Unit,
     cols: Int = 2
 ) {
-    LazyColumn {
+    LazyColumn(horizontalAlignment = Alignment.CenterHorizontally) {
 
         if (cols == 1) {
             items(items = movies) { movie ->
-                Box(Modifier.padding(top = 20.dp, start = 50.dp, end = 50.dp)) {
+                Box(Modifier.padding(top = 20.dp, start = 90.dp, end = 90.dp)) {
                     MovieItem(movie = movie, onItemClick = onItemClick)
                 }
             }
