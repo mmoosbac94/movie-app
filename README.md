@@ -23,6 +23,8 @@ The app was built using:
 </br>
 </br>
 
-<img src="https://user-images.githubusercontent.com/45032075/128868437-7a9e8a6a-9e27-4743-aab1-95037b85d71f.png" width="300">
-</br>
-<img src="https://user-images.githubusercontent.com/45032075/128868501-2642920b-1d3c-4225-aa5a-634078d47f13.png" width="300">
+<p float="left">
+  <img src="https://user-images.githubusercontent.com/45032075/128868437-7a9e8a6a-9e27-4743-aab1-95037b85d71f.png" width="300" />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="https://user-images.githubusercontent.com/45032075/128868501-2642920b-1d3c-4225-aa5a-634078d47f13.png" width="300" /> 
+</p>
