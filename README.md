@@ -17,3 +17,5 @@ The app was built using:
 - Mockk (e.g. mock repository)
 - Navigation Testing (TestNavHostController)
 - Espresso combined with Navigation Testing
+
+![Screenshot_1628598596](https://user-images.githubusercontent.com/45032075/128867815-b5510db1-9c1a-4bf3-b65d-62df48697b79.png)
