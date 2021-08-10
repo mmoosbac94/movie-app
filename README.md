@@ -18,4 +18,11 @@ The app was built using:
 - Navigation Testing (TestNavHostController)
 - Espresso combined with Navigation Testing
 
-<img src="https://user-images.githubusercontent.com/45032075/128867815-b5510db1-9c1a-4bf3-b65d-62df48697b79.png" width="48">
+
+
+</br>
+</br>
+
+<img src="https://user-images.githubusercontent.com/45032075/128868437-7a9e8a6a-9e27-4743-aab1-95037b85d71f.png" width="300">
+</br>
+<img src="https://user-images.githubusercontent.com/45032075/128868501-2642920b-1d3c-4225-aa5a-634078d47f13.png" width="300">
